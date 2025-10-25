@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist: กลยุทธ์พัฒนาเภสัชกร</title>
+    <!-- โหลด Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- โหลด Google Fonts (Noto Sans Thai) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+        }
+        /* สร้างสไตล์สำหรับ Custom Checkbox */
+        .task-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.2s;
+        }
+        .task-item:hover {
+            background-color: #f1f5f9; /* bg-cool-gray-100 */
+        }
+        .task-item input[type="checkbox"] {
+            display: none; /* ซ่อน checkbox เดิม */
+        }
+        /* สร้าง Checkbox ปลอม */
+        .custom-checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #6b7280; /* border-gray-500 */
+            border-radius: 0.375rem; /* rounded-md */
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        /* สร้างเครื่องหมายถูก (SVG) */
+        .custom-checkbox svg {
+            width: 0.85rem;
+            height: 0.85rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        /* เมื่อ Checkbox ถูกติ๊ก */
+        .task-item input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #3b82f6; /* bg-blue-500 */
+            border-color: #3b82f6; /* border-blue-500 */
+        }
+        .task-item input[type="checkbox"]:checked + .custom-checkbox svg {
+            opacity: 1;
+        }
+        /* เมื่อ Checkbox ถูกติ๊ก Text จะขีดฆ่า */
+        .task-item input[type="checkbox"]:checked ~ .task-label {
+            text-decoration: line-through;
+            color: #6b7280; /* text-gray-500 */
+        }
+        .task-label {
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .category-header {
+            background-image: linear-gradient(to right, var(--tw-gradient-stops));
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto max-w-3xl p-6 md:p-10 my-10 bg-white shadow-2xl rounded-2xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-800">Checklist กลยุทธ์พัฒนาเภสัชกร</h1>
+            <p class="text-lg text-gray-600 mt-2">
+                ทบทวนแนวคิดและตรวจสอบการนำไปปรับใช้ (อ้างอิง Singapore Model)
+            </p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="relative pt-1">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                            ความคืบหน้า (Completed)
+                        </span>
+                    </div>
+                    <div class="text-right">
+                        <span id="progress-text" class="text-xs font-semibold inline-block text-blue-600">
+                            0%
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-3 mb-4 text-xs flex rounded bg-blue-100">
+                    <div id="progress-bar" style="width: 0%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 transition-all duration-500"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checklist Categories -->
+        <div class="space-y-6" id="checklist-container">
+
+            <!-- Category 1: National Strategy -->
+            <section>
+                <h2 class="category-header --from-sky-600 --to-sky-800 text-xl font-semibold p-4 rounded-xl shadow-lg from-sky-600 to-sky-800">
+                    ขั้นตอนที่ 1: การวางยุทธศาสตร์ (National Strategy)
+                </h2>
+                <div class="mt-4 space-y-2 p-4 bg-white rounded-lg">
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">กำหนดเป้าหมายการดูแล (Care Excellence) ที่ชัดเจน</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">ประเมินความพร้อมของกำลังคน (Confident Workforce)</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">วิเคราะห์แผนการใช้เทคโนโลยี (Technology Enablement) (เช่น RPA, AI, Telepharmacy)</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Category 2: PHARMFORCE -->
+            <section>
+                <h2 class="category-header --from-teal-500 --to-teal-700 text-xl font-semibold p-4 rounded-xl shadow-lg from-teal-500 to-teal-700">
+                    ขั้นตอนที่ 2: การขับเคลื่อนด้านคน (PHARMFORCE)
+                </h2>
+                <div class="mt-4 space-y-2 p-4 bg-white rounded-lg">
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">มีแผนพัฒนาผู้นำ (Leadership Development) หรือไม่?</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">มีการทบทวนบทบาทและขอบเขตงาน (Role & Scope of Practice) หรือไม่?</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">มีแผนดูแลเรื่องภาระงานและสุขภาวะ (Workload & Work Environment) หรือไม่?</span>
+                    </label>
+                </div>
+            </section>
+            
+            <!-- Category 3: DFP -->
+            <section>
+                <h2 class="category-header --from-indigo-600 --to-indigo-800 text-xl font-semibold p-4 rounded-xl shadow-lg from-indigo-600 to-indigo-800">
+                    ขั้นตอนที่ 3: การสร้างแผนที่สมรรถนะ (DFP)
+                </h2>
+                <div class="mt-4 space-y-2 p-4 bg-white rounded-lg">
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">ระบุช่องว่าง (Gap) ระหว่างเภสัชกรจบใหม่กับระดับเชี่ยวชาญ</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">กำหนด Competency Domains (เช่น 7 Domains ของสิงคโปร์)</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">เชื่อมโยง Competency เข้ากับเส้นทางอาชีพ (Career Pathway)</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Category 4: PLDS -->
+            <section>
+                <h2 class="category-header --from-purple-600 --to-purple-800 text-xl font-semibold p-4 rounded-xl shadow-lg from-purple-600 to-purple-800">
+                    ขั้นตอนที่ 4: การบ่มเพาะผู้นำ (PLDS)
+                </h2>
+                <div class="mt-4 space-y-2 p-4 bg-white rounded-lg">
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">สร้างหลักสูตร/เครื่องมือพัฒนา "การนำตนเอง" (Self-Leadership)</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">สร้างหลักสูตร/เครื่องมือพัฒนา "การนำผู้อื่น" (Leading Others)</span>
+                    </label>
+                    <label class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="custom-checkbox">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span class="task-label text-gray-800">เชื่อมโยง PLDS เข้ากับ Domain "Leadership" ของ DFP</span>
+                    </label>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Reset Button -->
+        <div class="text-center mt-10">
+            <button id="reset-button" class="bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-lg hover:bg-gray-300 transition-all">
+                เริ่มต้นใหม่ (Reset)
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 mt-12 border-t pt-8">
+            <p>หากอยากรู้เรื่องราวของ Technology สำหรับคนสายอื่นที่ไม่ใช่ Developer (Domain Expert)</p>
+            <p class="font-medium text-indigo-700">ติดตามได้ที่ www.pharmconnection.net</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const totalTasks = checkboxes.length;
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const resetButton = document.getElementById('reset-button');
+
+            function updateProgress() {
+                const checkedTasks = document.querySelectorAll('.task-checkbox:checked').length;
+                const percentage = totalTasks > 0 ? Math.round((checkedTasks / totalTasks) * 100) : 0;
+                
+                progressBar.style.width = `${percentage}%`;
+                progressText.textContent = `${percentage}%`;
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+
+            resetButton.addEventListener('click', () => {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateProgress();
+            });
+
+            // Initial calculation
+            updateProgress();
+        });
+    </script>
+
+</body>
+</html>

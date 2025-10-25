@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFP Self-Assessment Checklist</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter and Sarabun fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load Icons (Heroicons via CDN) -->
+    <script type*="module" src="https://cdn.jsdelivr.net/npm/heroicons@2.1.3/24/outline/index.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Sarabun', 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Sarabun', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        /* Custom checkbox style */
+        .task-checkbox:checked + label {
+            text-decoration: line-through;
+            color: #9CA3AF; /* gray-400 */
+        }
+        .task-checkbox:checked + label .level-badge {
+            background-color: #6B7280; /* gray-500 */
+            color: #E5E7EB; /* gray-200 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto max-w-4xl p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-800">DFP Self-Assessment Checklist</h1>
+            <p class="text-lg text-gray-600 mt-2">แบบตรวจสอบการพัฒนาตนเองสำหรับเภสัชกร</p>
+            <p class="text-sm text-gray-500 mt-2">ใช้ Checklist นี้เพื่อทบทวนว่าคุณมีหลักฐาน (Evidence) หรือทักษะใดบ้างใน 7 ด้าน</p>
+        </header>
+
+        <!-- Overall Progress -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">ภาพรวมความก้าวหน้า</h2>
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-blue-700">Overall Progress</span>
+                <span id="overall-percentage" class="text-sm font-medium text-blue-700">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="overall-progress-bar" class="bg-blue-600 h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <button id="reset-button" class="mt-4 w-full md:w-auto bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                รีเซ็ตทั้งหมด
+            </button>
+        </div>
+
+        <!-- Domains Container -->
+        <div class="space-y-6">
+
+            <!-- Domain 1: Expert Professional Practice -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">⚕️ 1. การปฏิบัติงานวิชาชีพที่เชี่ยวชาญ</h3>
+                <div class="space-y-3" data-domain="domain1">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d1-1" class="task-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 hidden">
+                        <label for="d1-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันสามารถใช้ความรู้พื้นฐานกับเคสไม่ซับซ้อน (โดยมีผู้ชี้แนะ)
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d1-2" class="task-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 hidden">
+                        <label for="d1-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉันสามารถจัดการเคสที่ซับซ้อนปานกลางได้ด้วยตนเอง
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d1-3" class="task-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 hidden">
+                        <label for="d1-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉันเป็นที่ปรึกษาหลัก (Person to ask) ในสายงานเฉพาะของฉัน
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d1-4" class="task-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 hidden">
+                        <label for="d1-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉันสร้างมาตรฐานการดูแล/บริการใหม่ๆ ในสายงานของฉัน
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain 2: Building Working Relationships -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-green-700 mb-4">🤝 2. การสร้างความสัมพันธ์</h3>
+                <div class="space-y-3" data-domain="domain2">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d2-1" class="task-checkbox h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500 hidden">
+                        <label for="d2-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันสื่อสารกับผู้ป่วยและทีมงานในบริบทงานประจำวันได้ดี
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d2-2" class="task-checkbox h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500 hidden">
+                        <label for="d2-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉันสามารถทำงานร่วมกับผู้อื่น (Peer) ได้อย่างมีประสิทธิภาพ
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d2-3" class="task-checkbox h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500 hidden">
+                        <label for="d2-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉันสามารถโน้มน้าว (Persuade) ผู้บริหาร/สหวิชาชีพได้
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d2-4" class="task-checkbox h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500 hidden">
+                        <label for="d2-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉันเป็นผู้นำในการเจรจา/แก้ปัญหาขัดแย้งที่ซับซ้อน
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain 3: Leadership -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-yellow-600 mb-4">🧭 3. ภาวะผู้นำ</h3>
+                <div class="space-y-3" data-domain="domain3">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d3-1" class="task-checkbox h-5 w-5 text-yellow-600 rounded border-gray-300 focus:ring-yellow-500 hidden">
+                        <label for="d3-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉัน "เข้าใจ" วิสัยทัศน์และเป้าหมายของแผนก
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d3-2" class="task-checkbox h-5 w-5 text-yellow-600 rounded border-gray-300 focus:ring-yellow-500 hidden">
+                        <label for="d3-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉัน "มีส่วนร่วม" ในการผลักดันกลยุทธ์ และ "เสนอ" นวัตกรรม
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d3-3" class="task-checkbox h-5 w-5 text-yellow-600 rounded border-gray-300 focus:ring-yellow-500 hidden">
+                        <label for="d3-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉัน "สร้าง" วิสัยทัศน์/กลยุทธ์ และ "นำ" ทีมให้บรรลุเป้าหมาย
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d3-4" class="task-checkbox h-5 w-5 text-yellow-600 rounded border-gray-300 focus:ring-yellow-500 hidden">
+                        <label for="d3-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉัน "สร้างอิทธิพล" (Influence) ให้เกิดการเปลี่ยนแปลงเชิงกลยุทธ์ระดับองค์กร/ชาติ
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain 4: Management -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-4">📈 4. การจัดการ</h3>
+                <div class="space-y-3" data-domain="domain4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d4-1" class="task-checkbox h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 hidden">
+                        <label for="d4-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉัน "จัดการงานของตนเอง" ให้สอดคล้องกับมาตรฐานและลำดับความสำคัญ
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d4-2" class="task-checkbox h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 hidden">
+                        <label for="d4-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉัน "มีส่วนร่วม" ในการจัดการทรัพยากร/ความเสี่ยง ในโครงการเล็กๆ
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d4-3" class="task-checkbox h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 hidden">
+                        <label for="d4-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉัน "รับผิดชอบ" การจัดการ (ทรัพยากร, ผลงาน, ความเสี่ยง) ของ "ทีม"
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d4-4" class="task-checkbox h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500 hidden">
+                        <label for="d4-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉัน "วางกลยุทธ์" การจัดการ "ระดับองค์กร" และนำการเปลี่ยนแปลงที่ซับซ้อน
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain 5: Education, Training and Development -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-4">🧑‍🏫 5. การศึกษาและการพัฒนา</h3>
+                <div class="space-y-3" data-domain="domain5">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d5-1" class="task-checkbox h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 hidden">
+                        <label for="d5-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันมีแผน "พัฒนาตนเอง" (Self-Development) และเรียนรู้อย่างต่อเนื่อง
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d5-2" class="task-checkbox h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 hidden">
+                        <label for="d5-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉันสามารถ "สอน/สนับสนุน" การเรียนรู้ของเพื่อนร่วมงาน (Peer-learning)
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d5-3" class="task-checkbox h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 hidden">
+                        <label for="d5-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉันเป็น "โค้ช" (Coach) หรือ "พี่เลี้ยง" (Mentor) ให้คนในทีมอย่างเป็นทางการ
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d5-4" class="task-checkbox h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 hidden">
+                        <label for="d5-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉัน "ออกแบบหลักสูตร" หรือเป็นพี่เลี้ยงในระดับองค์กร/ชาติ
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Domain 6: Research & Evaluation -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-pink-700 mb-4">🔬 6. การวิจัยและการประเมินผล</h3>
+                <div class="space-y-3" data-domain="domain6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d6-1" class="task-checkbox h-5 w-5 text-pink-600 rounded border-gray-300 focus:ring-pink-500 hidden">
+                        <label for="d6-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-green-200 text-green-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันสามารถ "อ่านและประเมิน" วรรณกรรมพื้นฐาน (EBM) ได้
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d6-2" class="task-checkbox h-5 w-5 text-pink-600 rounded border-gray-300 focus:ring-pink-500 hidden">
+                        <label for="d6-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-blue-200 text-blue-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Intermediate</span>
+                            ฉัน "มีส่วนร่วม" ในโครงการพัฒนาคุณภาพ (QI) หรือวิจัย
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d6-3" class="task-checkbox h-5 w-5 text-pink-600 rounded border-gray-300 focus:ring-pink-500 hidden">
+                        <label for="d6-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-purple-200 text-purple-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Advanced</span>
+                            ฉัน "เป็นผู้นำ" โครงการ/วิจัย (เช่น Co-I/PI) และสามารถ "เผยแพร่" ผลงานได้
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d6-4" class="task-checkbox h-5 w-5 text-pink-600 rounded border-gray-300 focus:ring-pink-500 hidden">
+                        <label for="d6-4" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-red-200 text-red-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Expert</span>
+                            ฉันเป็น "ที่ปรึกษา" ด้านวิจัย (เช่น PI ทุนใหญ่, Reviewer, บอร์ด IRB)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain 7: Professionalism -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4">⚖️ 7. ความเป็นมืออาชีพ</h3>
+                <div class="space-y-3" data-domain="domain7">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d7-1" class="task-checkbox h-5 w-5 text-gray-600 rounded border-gray-300 focus:ring-gray-500 hidden">
+                        <label for="d7-1" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-gray-200 text-gray-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันปฏิบัติตามจรรยาบรรณวิชาชีพอย่างเคร่งครัด
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d7-2" class="task-checkbox h-5 w-5 text-gray-600 rounded border-gray-300 focus:ring-gray-500 hidden">
+                        <label for="d7-2" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-gray-200 text-gray-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันปฏิบัติตามกรอบกฎหมายและข้อบังคับที่เกี่ยวข้อง
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="d7-3" class="task-checkbox h-5 w-5 text-gray-600 rounded border-gray-300 focus:ring-gray-500 hidden">
+                        <label for="d7-3" class="flex items-center cursor-pointer select-none text-gray-700">
+                            <span class="level-badge bg-gray-200 text-gray-800 text-xs font-semibold mr-3 px-2.5 py-0.5 rounded-full">Foundation</span>
+                            ฉันรับผิดชอบต่อการกระทำและการตัดสินใจทางวิชาชีพของฉัน
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>หากอยากรู้เรื่องราวของ Technology สำหรับคนสายอื่นที่ไม่ใช่ developer (Domain Expert) ติดตามได้ที่ <a href="http://www.pharmconnection.net" target="_blank" class="text-blue-600 hover:underline">www.pharmconnection.net</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const totalTasks = checkboxes.length;
+            const progressBar = document.getElementById('overall-progress-bar');
+            const percentageText = document.getElementById('overall-percentage');
+            const resetButton = document.getElementById('reset-button');
+
+            // --- Custom Checkbox UI ---
+            // This script replaces the hidden checkbox with a visible icon
+            checkboxes.forEach(checkbox => {
+                const label = document.querySelector(`label[for="${checkbox.id}"]`);
+                if (!label) return;
+
+                const checkIcon = document.createElement('span');
+                checkIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`;
+                checkIcon.className = 'text-gray-300 mr-3'; // Default state (empty circle)
+                
+                const checkedIconHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" /></svg>`;
+                const uncheckedIconHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`;
+
+                // Set initial state
+                if (checkbox.checked) {
+                    checkIcon.innerHTML = checkedIconHTML;
+                    checkIcon.className = 'text-blue-600 mr-3';
+                } else {
+                    checkIcon.innerHTML = uncheckedIconHTML;
+                    checkIcon.className = 'text-gray-400 mr-3';
+                }
+
+                label.prepend(checkIcon);
+
+                // Add click listener to label
+                label.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default label behavior
+                    checkbox.checked = !checkbox.checked;
+                    
+                    // Update visual state
+                    if (checkbox.checked) {
+                        checkIcon.innerHTML = checkedIconHTML;
+                        checkIcon.className = 'text-blue-600 mr-3';
+                    } else {
+                        checkIcon.innerHTML = uncheckedIconHTML;
+                        checkIcon.className = 'text-gray-400 mr-3';
+                    }
+                    
+                    // Dispatch change event to trigger update
+                    checkbox.dispatchEvent(new Event('change'));
+                });
+            });
+
+
+            // --- Logic for Progress Bar ---
+            function updateProgress() {
+                const checkedTasks = document.querySelectorAll('.task-checkbox:checked').length;
+                const percentage = totalTasks > 0 ? Math.round((checkedTasks / totalTasks) * 100) : 0;
+                
+                progressBar.style.width = `${percentage}%`;
+                percentageText.textContent = `${percentage}%`;
+
+                // Save to localStorage
+                const checkedIds = Array.from(document.querySelectorAll('.task-checkbox:checked')).map(cb => cb.id);
+                localStorage.setItem('dfpChecklist', JSON.stringify(checkedIds));
+            }
+
+            // --- Load from localStorage ---
+            function loadProgress() {
+                const savedChecks = JSON.parse(localStorage.getItem('dfpChecklist'));
+                if (savedChecks && Array.isArray(savedChecks)) {
+                    savedChecks.forEach(id => {
+                        const checkbox = document.getElementById(id);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            // Update visual state as well
+                            const label = document.querySelector(`label[for="${id}"]`);
+                            if(label && label.firstChild){
+                                label.firstChild.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" /></svg>`;
+                                label.firstChild.className = 'text-blue-600 mr-3';
+                            }
+                        }
+                    });
+                }
+                updateProgress();
+            }
+
+            // --- Reset Button ---
+            resetButton.addEventListener('click', () => {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                    // Update visual state
+                    const label = document.querySelector(`label[for="${checkbox.id}"]`);
+                    if(label && label.firstChild){
+                         label.firstChild.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`;
+                         label.firstChild.className = 'text-gray-400 mr-3';
+                    }
+                });
+                updateProgress();
+            });
+
+            // Add event listeners
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+
+            // Initial load
+            loadProgress();
+        });
+    </script>
+</body>
+</html>
